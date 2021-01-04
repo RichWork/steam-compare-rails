@@ -1,0 +1,10 @@
+<h1>Welcome to the Compare!</h1>
+
+<% if session.key? :current_user %>
+  <h3>Current user:</h3>
+  <p><%= @user['nickname'].inspect %></p>
+  <p><%= @user['uid'].inspect %></p>
+  <p><%= link_to 'Sign out', log_out_welcome_index_path, data: { confirm: 'Are you sure?' } %></p>
+  <% else %>
+  <p>Sign in failed, please <%= link_to 'go back', log_out_welcome_index_path %> </p>
+<% end %>
