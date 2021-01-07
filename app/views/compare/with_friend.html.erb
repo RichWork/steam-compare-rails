@@ -5,7 +5,14 @@
 
 <p>
   <strong>Against friends:</strong>
-  <%= @friend %>
+  <%= @friend_name %>
+</p>
+
+<p>
+  <strong>Shared games:</strong>
+  <% @shared_games.each do |game| %>
+    <li><%= game %> </li>
+  <% end %>
 </p>
 
 <p>
