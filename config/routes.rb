@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   post 'auth/steam/callback' => 'welcome#auth_callback'
   get 'compare/index'
+  get 'compare/with_friend'
   resources :welcome do
     collection do
       get 'log_out'

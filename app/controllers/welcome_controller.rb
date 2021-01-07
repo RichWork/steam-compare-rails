@@ -9,9 +9,10 @@ class WelcomeController < ApplicationController
 
   def auth_callback
     auth = request.env['omniauth.auth']
-    session[:current_user] = { :nickname => auth.info['nickname'],
-                                          :image => auth.info['image'],
-                                          :uid => auth.uid }
+    session[:current_user] = {
+      :nickname => auth.info['nickname'],
+      :uid => auth.uid
+      }
 
     redirect_to compare_index_url
   end
@@ -21,4 +22,5 @@ class WelcomeController < ApplicationController
     reset_session
     redirect_to root_url
   end
+  
 end

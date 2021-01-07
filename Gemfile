@@ -53,3 +53,7 @@ gem 'omniauth-steam'
 
  # gem for managing environment variables (steam webapi key)
 gem 'figaro'
+
+# gem for JSON and open URI
+gem 'json'
+gem 'open-uri'

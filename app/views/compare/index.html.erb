@@ -1,10 +1,33 @@
-<h1>Welcome to the Compare!</h1>
-
 <% if session.key? :current_user %>
+<h1>Welcome <%= @user['nickname'] %>!</h1>
+
   <h3>Current user:</h3>
-  <p><%= @user['nickname'].inspect %></p>
-  <p><%= @user['uid'].inspect %></p>
+  <p>Nickname: <%= @user['nickname'] %></p>
+  <p>Steam User ID: <%= @user['uid'] %></p>
   <p><%= link_to 'Sign out', log_out_welcome_index_path, data: { confirm: 'Are you sure?' } %></p>
+
+  <div class="row">
+    <table class="col table">
+      <thead>
+        <tr>
+          <th>User name</th>
+          <th>User ID</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @friends.each do | key, value | %>
+          <tr>
+            <td><%= value %></td>
+            <td><%= key %></td>
+            <td><%= link_to 'Compare', compare_with_friend_url(friend: key) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
   <% else %>
-  <p>Sign in failed, please <%= link_to 'go back', log_out_welcome_index_path %> </p>
+  <h1>Sign in failed, please <%= link_to 'go back', log_out_welcome_index_path %> </h1>
 <% end %>
