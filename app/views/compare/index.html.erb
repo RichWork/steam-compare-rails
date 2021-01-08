@@ -2,9 +2,11 @@
 <h1>Welcome <%= @user['nickname'] %>!</h1>
 
   <h3>Current user:</h3>
-  <p>Nickname: <%= @user['nickname'] %></p>
-  <p>Steam User ID: <%= @user['uid'] %></p>
-  <p><%= link_to 'Sign out', log_out_welcome_index_path, data: { confirm: 'Are you sure?' } %></p>
+    <h4>Nickname:</h4>
+      <p><%= @user['nickname'] %></p>
+    <h4>Steam User ID:</h4>
+      <p><%= @user['uid'] %></p>
+    <p><%= link_to 'Sign out', log_out_welcome_index_path, data: { confirm: 'Are you sure?' } %></p>
 
   <div class="row">
     <table class="col table">
@@ -12,7 +14,7 @@
         <tr>
           <th>User name</th>
           <th>User ID</th>
-          <th colspan="3"></th>
+          <th colspan="3">Compare</th>
         </tr>
       </thead>
 

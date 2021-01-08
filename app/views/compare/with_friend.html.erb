@@ -1,19 +1,25 @@
-<p>
+<div>
+  <p>
   <strong>Comparing User:</strong>
   <%= @user['nickname'] %>
 </p>
+</div>
 
+<div>
 <p>
   <strong>Against friends:</strong>
   <%= @friend_name %>
 </p>
+</div>
 
-<p>
+<div>
+<h2>
   <strong>Shared games:</strong>
+</h2>
   <% @shared_games.each do |game| %>
-    <li><%= game %> </li>
+    <ul><%= game %> </ul>
   <% end %>
-</p>
+</div>
 
 <p>
   <%= link_to 'Back to list', compare_index_url %>

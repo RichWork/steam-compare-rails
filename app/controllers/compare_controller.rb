@@ -14,6 +14,10 @@ class CompareController < ApplicationController
     @friend_uid = params[:friend]
     @friend_name = friend_summary_name(@friend_uid)
     @shared_games = shared_games(games_list(session[:current_user]['uid']), games_list(@friend_uid))
+    if @shared_games.blank?
+      @shared_games[0] = "No shared games!"
+    end
+
     render :with_friend
   end
 
@@ -53,8 +57,11 @@ class CompareController < ApplicationController
     games_raw = JSON.parse(uri.read)['response']['games']
     games = []
 
-    games_raw.each do |g|
-      games << g['appid']
+    if games_raw.nil?
+    else
+      games_raw.each do |g|
+        games << g['appid']
+      end
     end
 
     return games
