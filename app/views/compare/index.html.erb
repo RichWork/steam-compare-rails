@@ -1,35 +1,36 @@
 <% if session.key? :current_user %>
-<h1>Welcome <%= @user['nickname'] %>!</h1>
+  <%= form_tag 'multi_compare' %>
+    <h1>Welcome <%= @user['nickname'] %>!</h1>
 
-  <h3>Current user:</h3>
-    <h4>Nickname:</h4>
-      <p><%= @user['nickname'] %></p>
-    <h4>Steam User ID:</h4>
-      <p><%= @user['uid'] %></p>
-    <p><%= link_to 'Sign out', log_out_welcome_index_path, data: { confirm: 'Are you sure?' } %></p>
+      <h3>Current user:</h3>
+        <h4>Nickname:</h4><p><%= @user['nickname'] %></p>
+        <h4>Steam User ID:</h4><p><%= @user['uid'] %></p>
+        <p><%= link_to 'Sign out', log_out_welcome_index_path, data: { confirm: 'Are you sure?' } %></p>
+        <p><%= submit_tag 'Compare' %>
 
-  <div class="row">
-    <table class="col table">
-      <thead>
-        <tr>
-          <th>User name</th>
-          <th>User ID</th>
-          <th colspan="3">Compare</th>
-        </tr>
-      </thead>
+      <div class="row">
+        <table class="col table">
+          <thead>
+            <tr>
+              <th>User name</th>
+              <th>User ID</th>
+              <th>Compare</th>
+              <th>Multi-Compare</th>
+            </tr>
+          </thead>
 
-      <tbody>
-        <% @friends.each do | key, value | %>
-          <tr>
-            <td><%= value %></td>
-            <td><%= key %></td>
-            <td><%= link_to 'Compare', compare_with_friend_url(friend: key) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-
+          <tbody>
+          <% @friends.each do | key, value | %>
+            <tr>
+              <td><%= value %></td>
+              <td><%= key %></td>
+              <td><%= link_to 'Compare', compare_with_friend_url(friend: key) %></td>
+              <td><%= check_box_tag('friends[]', key) %> </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
   <% else %>
   <h1>Sign in failed, please <%= link_to 'go back', log_out_welcome_index_path %> </h1>
 <% end %>

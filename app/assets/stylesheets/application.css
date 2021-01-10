@@ -49,10 +49,22 @@ table, td, th {
   padding: 8px;
 }
 
-tr:nth-child(even){background-color: #f2f2f2;}
-tr:nth-child(odd){background-color: lightgrey};
+table {
+  width: 50%;
+  border-collapse: collapse;
+}
 
-tr:hover {background-color: #ddd;}
+tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(odd){
+  background-color: lightgrey;
+}
+
+tr:hover {
+  background-color: pink;
+}
 
 ul {
   list-style-type: circle;

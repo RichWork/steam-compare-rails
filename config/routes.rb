@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post 'auth/steam/callback' => 'welcome#auth_callback'
   get 'compare/index'
   get 'compare/with_friend'
+  post 'compare/multi_compare'
   resources :welcome do
     collection do
       get 'log_out'
