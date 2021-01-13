@@ -20,7 +20,8 @@ class WelcomeController < ApplicationController
   def log_out
     session.clear
     reset_session
+    flash[:error] = "Please log in to continue!"
     redirect_to root_url
   end
-  
+
 end

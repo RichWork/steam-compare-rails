@@ -1,5 +1,5 @@
 <% if session.key? :current_user %>
-  <%= form_tag 'multi_compare' %>
+  <%= form_tag(compare_multi_compare_path) %>
     <h1>Welcome <%= @user['nickname'] %>!</h1>
 
       <h3>Current user:</h3>
@@ -24,7 +24,7 @@
             <tr>
               <td><%= value %></td>
               <td><%= key %></td>
-              <td><%= link_to 'Compare', compare_with_friend_url(friend: key) %></td>
+              <td><%= link_to 'Compare', compare_with_friend_path(friend: key) %></td>
               <td><%= check_box_tag('friends[]', key) %> </td>
             </tr>
             <% end %>
