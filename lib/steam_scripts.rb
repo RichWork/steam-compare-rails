@@ -29,17 +29,33 @@ class SteamScripts
     return friend_name
   end
 
-  def self.games_list(uid)
+  def self.games_list(uid, option)
     uid = uid
     games_link = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=#{ENV['STEAM_API_KEY']}&steamid=#{uid}&format=json"
     uri = URI.open(games_link)
     games_raw = JSON.parse(uri.read)['response']['games']
+    steam_hash = steam_hash_db
     games = []
 
     if games_raw.nil?
-    else
+
+    elsif !games_raw.nil? && option == 1
       games_raw.each do |g|
         games << g['appid']
+      end
+
+    elsif !games_raw.nil? && option == 2
+      games_raw.each do |g|
+        games << g
+      end
+      p games
+      games.sort! {|a, b| b['playtime_forever'] <=> a['playtime_forever']}
+#      games.reverse!
+      games = games[0..9]
+
+      games.each do |g|
+        g['name'] = steam_hash[g['appid']]
+        g['time_played'] = g['playtime_forever'] / 60
       end
     end
 

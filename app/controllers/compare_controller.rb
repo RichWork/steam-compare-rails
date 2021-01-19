@@ -14,12 +14,26 @@ class CompareController < ApplicationController
     @user = session[:current_user]
     @friend_uid = params[:friend]
     @friend_name = SteamScripts.friend_summary_name(@friend_uid)
-    @shared_games = SteamScripts.shared_games_names(SteamScripts.shared_games(SteamScripts.games_list(session[:current_user]['uid']), SteamScripts.games_list(@friend_uid)))
+    @shared_games = SteamScripts.shared_games_names(SteamScripts.shared_games(SteamScripts.games_list(session[:current_user]['uid'], 1), SteamScripts.games_list(@friend_uid, 1)))
     if @shared_games.blank?
       @shared_games[0] = "No shared games!"
     end
 
     render :with_friend
+  end
+
+  def time_wasted
+    @user = session[:current_user]
+    if params.has_key?(:friend)
+      @friend_uid = params[:friend]
+      @name = SteamScripts.friend_summary_name(@friend_uid)
+      @game_time = SteamScripts.games_list(@friend_uid, 2)
+    else
+      @name = session[:current_user]['nickname']
+      @game_time = SteamScripts.games_list(session[:current_user]['uid'], 2)
+    end
+
+    render :time_wasted
   end
 
   def multi_compare
@@ -35,9 +49,9 @@ class CompareController < ApplicationController
         friend_name = SteamScripts.friend_summary_name(friend)
         @friends_name << friend_name
         if shared_games_ids.blank?
-          shared_games_ids = SteamScripts.shared_games(SteamScripts.games_list(session[:current_user]['uid']), SteamScripts.games_list(friend))
+          shared_games_ids = SteamScripts.shared_games(SteamScripts.games_list(session[:current_user]['uid'], 1), SteamScripts.games_list(friend, 1))
         else
-          shared_games_ids = SteamScripts.shared_games(shared_games_ids, SteamScripts.games_list(friend))
+          shared_games_ids = SteamScripts.shared_games(shared_games_ids, SteamScripts.games_list(friend, 1))
         end
       end
 

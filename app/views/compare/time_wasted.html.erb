@@ -1,0 +1,16 @@
+<p>
+  <strong>User:</strong>
+  <%= @name %>
+</p>
+
+
+<h2>
+  <strong>Wasted life on:</strong>
+</h2>
+  <% @game_time.each do |game| %>
+    <ul><strong>Game:</strong> <%= game['name'] %> <strong> - Time wasted:</strong> <%= game['time_played'] %> hours</ul>
+  <% end %>
+
+<p>
+  <%= link_to 'Back to list', compare_index_path %>
+</p>
