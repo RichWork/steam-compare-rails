@@ -1,16 +1,22 @@
-<% if session.key? :current_user %>
-  <%= form_tag(compare_multi_compare_path) %>
-    <h1>Welcome <%= @user['nickname'] %>!</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <% if session.key? :current_user %>
+        <%= form_tag(compare_multi_compare_path) %>
+        <h1>Welcome <%= @user['nickname'] %>!</h1>
 
-      <h3>Current user:</h3>
-        <p><%= @user['nickname'] %></p>
-        <h4>Steam User ID:</h4>
-        <p><%= @user['uid'] %></p>
-        <h4><%= link_to 'Time wasted?', compare_time_wasted_path %> </h4>
-        <p><%= link_to 'Sign out', log_out_welcome_index_path, data: { confirm: 'Are you sure?' } %></p>
-        <p><%= submit_tag 'Compare' %> </p>
-        <p>Click on user to find out their top ten time wasters! </p>
-      <div class="row">
+        <h3>Current user:</h3>
+          <p><%= @user['nickname'] %></p>
+          <h4>Steam User ID:</h4>
+          <p><%= @user['uid'] %></p>
+          <h4><%= link_to 'Time wasted?', compare_time_wasted_path %> </h4>
+          <p><%= link_to 'Sign out', log_out_welcome_index_path, data: { confirm: 'Are you sure?' } %></p>
+          <p><%= submit_tag 'Compare' %> </p>
+          <p>Click on user to find out their top ten time wasters! </p>
+    </div>
+  </div>
+</div>
+    <div class="centre">
         <table class="col table">
           <thead>
             <tr>

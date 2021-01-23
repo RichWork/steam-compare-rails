@@ -54,6 +54,9 @@ gem 'omniauth-steam'
  # gem for managing environment variables (steam webapi key)
 gem 'figaro'
 
+# gem for importing bootstrap CSS styling
+gem 'bootstrap-sass'
+
 # gem for JSON and open URI
 gem 'json'
 gem 'open-uri'

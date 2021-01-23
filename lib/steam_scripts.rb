@@ -50,7 +50,6 @@ class SteamScripts
       end
       p games
       games.sort! {|a, b| b['playtime_forever'] <=> a['playtime_forever']}
-#      games.reverse!
       games = games[0..9]
 
       games.each do |g|

@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
  body {
    background-color: lightblue;
@@ -38,7 +40,6 @@
   color: red;
 }
 
-
  h6 {
    display: block;
    margin-left: auto;
@@ -49,19 +50,17 @@
  th {
    padding-top: 12px;
    padding-bottom: 12px;
-   text-align: auto;
-   background-color: lightgreen;
-   color: black;
+   text-align: center;
+   background-color: white;
 }
 
-table, td, th {
-  border: 1px solid black;
-  padding: 8px;
+td {
+  text-align: center;
 }
 
 table {
-  width: 50%;
-  border-collapse: collapse;
+    width: 50%;
+    max-width: none;
 }
 
 tr:nth-child(even){
@@ -74,10 +73,4 @@ tr:nth-child(odd){
 
 tr:hover {
   background-color: pink;
-}
-
-ul {
-  list-style-type: circle;
-  line-height: 1;
-  font-size: 12px;
 }
